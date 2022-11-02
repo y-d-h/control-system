@@ -5,6 +5,7 @@ import CSV from "pages/CSV";
 import Tables from "pages/Tables";
 import Maps from "pages/Maps";
 import Login from "pages/Login";
+import Test from "pages/Test";
 import Footer from "components/Footer";
 
 // Tailwind CSS Style Sheet
@@ -21,6 +22,7 @@ function App() {
           <Route exact path="/tables" component={Tables} />
           <Route exact path="/maps" component={Maps} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/test" component={Test} />
           <Redirect from="*" to="/" />
         </Switch>
         {/* <Footer /> */}

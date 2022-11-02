@@ -65,7 +65,7 @@ export default function TrafficCard() {
                   3,678
                 </td>
                 <td className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                  <Progress color="indigo" value="75" />
+                  <Progress color="indigo" value="15" />
                 </td>
               </tr>
               <tr>
