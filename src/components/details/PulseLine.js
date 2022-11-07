@@ -3,33 +3,76 @@ import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
+import { useState, useRef } from "react";
+import { isIdentifierPart } from "typescript";
+import { useParams } from "react-router-dom";
+import { call } from "../../service/ApiService";
+import { LineAxisOutlined } from "@mui/icons-material";
 
-export default function Line() {
+export default function PulseLine(props) {
+  console.log("props : ", props);
+
+  // const { phone } = useParams();
+  // const [data, setData] = useState();
+
+  // useEffect(() => {
+  //   call("/userinput/detail", "POST", { phone: phone }).then((response) => {
+  //     console.log(response.data);
+  //     setData(response.data);
+  //   });
+  // }, []);
+
+  // console.log(phone);
+  // console.log(data && data[0].time);
+  //console.log(data[0].time);
+
   useEffect(() => {
-    var config = {
+    //if (!data) return <></>;
+
+    // if (data !== undefined) {
+    //   console.log("data : ", data);
+    // }
+
+    let config = {
       type: "line",
       data: {
-        labels: ["20", "February", "March", "April", "May", "June", "July"],
+        labels: [
+          props.data[0].time.substr(6, 7),
+          // data[1].time.substr(6, 7),
+          // "",
+          "",
+          "",
+          "April",
+          "May",
+          "??? ",
+          "???",
+        ],
+        //labels: array.array,
         datasets: [
           {
-            label: "수축기혈압",
+            label: "맥박",
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data: [65, 78, 66, 44, 56, 67, 75],
+            data: [
+              //props.data[0].pulse,
+              //props.data[1].pulse,
+              66,
+              66,
+              66,
+              null,
+              null,
+              null,
+              null,
+            ],
             fill: false,
-          },
-          {
-            label: "이완기혈압",
-            fill: false,
-            backgroundColor: "#ff9800",
-            borderColor: "#ff9800",
-            data: [40, 68, 86, 74, 56, 60, 87],
+            lineTension: 0,
           },
         ],
       },
       options: {
         maintainAspectRatio: false,
         responsive: true,
+
         title: {
           display: false,
           text: "Sales Charts",
@@ -98,21 +141,18 @@ export default function Line() {
         },
       },
     };
-    var ctx = document.getElementById("line-chart").getContext("2d");
+    var ctx = document.getElementById("pulse-line").getContext("2d");
     window.myLine = new Chart(ctx, config);
-  }, []);
+  }, [data]);
 
   return (
     <Card>
       <CardHeader color="indigo" contentPosition="left">
-        <h6 className="uppercase text-gray-200 text-xs font-medium">
-          Overview
-        </h6>
-        <h2 className="text-white text-2xl">주간 혈압</h2>
+        <h2 className="text-white text-2xl">맥박 통계</h2>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">
-          <canvas id="line-chart"></canvas>
+          <canvas id="pulse-line"></canvas>
         </div>
       </CardBody>
     </Card>

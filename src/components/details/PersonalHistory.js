@@ -1,27 +1,19 @@
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
-import Image from "@material-tailwind/react/Image";
-import Progress from "@material-tailwind/react/Progress";
-import Team1 from "assets/img/team-1-800x800.jpg";
-import Team2 from "assets/img/team-2-800x800.jpg";
-import Team3 from "assets/img/team-3-800x800.jpg";
-import Team4 from "assets/img/team-4-470x470.png";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
-import DateRange from "./DateRangePicker";
-//import CalendarsDateRangePicker from "./DateRangePicker";
-import { call } from "../service/ApiService";
+import { call } from "../../service/ApiService";
 import { useEffect, useState } from "react";
 
-export default function HistoryTable() {
-  const [userinput, setUserinput] = useState();
+export default function PersonalHistory({ data }) {
+  // const [userinput, setUserInput] = useState();
 
-  useEffect(() => {
-    call("/userinput", "GET").then((response) => {
-      setUserinput(response.data);
-      console.log(response.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   call("/userinput/detail", "GET").then((response) => {
+  //     setUserInput(response.data);
+  //     console.log(response.data);
+  //   });
+  // }, []);
 
   // const inputdata = [
   //   {
@@ -53,8 +45,6 @@ export default function HistoryTable() {
       <CardHeader color="blueGray" contentPosition="left">
         <div className="grid grid-cols-6 col-gap-8">
           <h2 className=" text-white text-2xl ">사용자 이력</h2>
-          <DateRange className="col-2 w-xl" />
-          <NavbarInput className="col-3 w-full" placeholder="Search" />
         </div>
       </CardHeader>
       <CardBody>
@@ -62,12 +52,6 @@ export default function HistoryTable() {
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
-                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                  이름
-                </th>
-                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                  성별
-                </th>
                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                   나이
                 </th>
@@ -90,31 +74,14 @@ export default function HistoryTable() {
                   체온
                 </th>
                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
-                  전화번호
-                </th>
-                <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-left">
                   입력일자
                 </th>
               </tr>
             </thead>
-            {userinput &&
-              userinput.map((user, idx) => (
+            {data &&
+              data.map((user, idx) => (
                 <tbody>
-                  <tr
-                    key={idx}
-                    onClick={() => {
-                      var url = "/detail/" + user.phone;
-                      window.location.href = url;
-                    }}
-                    className="cursor-pointer"
-                  >
-                    <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                      {user.name}
-                      {/* {userinput.name} */}
-                    </th>
-                    <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                      {user.sex}
-                    </th>
+                  <tr key={idx}>
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                       {user.age}
                     </th>
@@ -135,9 +102,6 @@ export default function HistoryTable() {
                     </th>
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                       {user.temperature}
-                    </th>
-                    <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
-                      {user.phone}
                     </th>
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
                       {user.time}

@@ -27,7 +27,7 @@ export default function Sidebar() {
             <ul className="flex-col min-w-full flex list-none">
               <li className="rounded-lg mb-4">
                 <NavLink
-                  to="/"
+                  to="/dashboard"
                   exact
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   activeClassName="no-underline bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
@@ -70,13 +70,8 @@ export default function Sidebar() {
                 </NavLink>
               </li> */}
 
-              <li className="rounded-lg mb-2 text-gray-700">
-                {/* <a
-                  href="https://demos.creative-tim.com/material-tailwind-kit-react/#/login"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-4 text-sm font-light py-3"
-                > */}
+              {/* <li className="rounded-lg mb-2 text-gray-700">
+                
                 <NavLink
                   to="/login"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
@@ -86,10 +81,9 @@ export default function Sidebar() {
                   로그인
                 </NavLink>
 
-                {/* </a> */}
-              </li>
+              </li> */}
 
-              <li className="rounded-lg mb-2 ">
+              {/* <li className="rounded-lg mb-2 ">
                 <NavLink
                   to="/test"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
@@ -98,7 +92,7 @@ export default function Sidebar() {
                   <Icon name="toc" size="2xl" />
                   Test
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

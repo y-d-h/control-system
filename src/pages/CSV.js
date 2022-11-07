@@ -34,6 +34,7 @@ const CSV = function () {
         pulse: element.pulse,
         sbp: element.SBP,
         dbp: element.DBP,
+        phone: element.phone,
         temperature: element.temperature,
       };
       console.log(element);

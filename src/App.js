@@ -1,29 +1,33 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, useLocation } from "react-router-dom";
 import Sidebar from "components/Sidebar";
 import Dashboard from "pages/Dashboard";
 import CSV from "pages/CSV";
 import Tables from "pages/Tables";
 import Maps from "pages/Maps";
 import Login from "pages/Login";
-import Test from "pages/Test";
+import Detail from "pages/Detail";
 import Footer from "components/Footer";
 
 // Tailwind CSS Style Sheet
 import "assets/styles/tailwind.css";
 
 function App() {
+  const location = useLocation().pathname;
+
   return (
     <>
-      <Sidebar />
+      {location === "/login" ? <></> : <Sidebar />}
+
       <div className="md:ml-64">
         <Switch>
-          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/CSV" component={CSV} />
           <Route exact path="/tables" component={Tables} />
           <Route exact path="/maps" component={Maps} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/test" component={Test} />
-          <Redirect from="*" to="/" />
+          <Route exact path="/detail/:phone" component={Detail} />
+          <Redirect from="*" to="/login" />
+          {/* <Redirect from="/" to="/login" /> */}
         </Switch>
         {/* <Footer /> */}
       </div>

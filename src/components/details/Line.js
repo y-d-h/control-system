@@ -4,36 +4,47 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 
-export default function RowBar() {
+export default function Line({ data }) {
+  console.log(data);
   useEffect(() => {
-    let config = {
-      type: "bar",
+    var config = {
+      type: "line",
       data: {
-        labels: [
-          "고체온",
-          "저체온",
-          "수축기혈압",
-          "이완기혈압",
-          "산소포화도",
-          "맥박수",
-        ],
+        labels: ["20", "February", "March", "April", "May", "", ""],
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: "수축기혈압",
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data: [20, 78, 56, 34, 100, 45, 0],
+            data: [65, 78, 66, 44, 56, null, null],
             fill: false,
-            barThickness: 28,
+            lineTension: 0,
+          },
+          {
+            label: "이완기혈압",
+            fill: false,
+            backgroundColor: "#ff9800",
+            borderColor: "#ff9800",
+            data: [40, 68, 86, 74, 56, null, null],
+            lineTension: 0,
           },
         ],
       },
       options: {
         maintainAspectRatio: false,
         responsive: true,
+
         title: {
           display: false,
-          text: "Orders Chart",
+          text: "Sales Charts",
+          fontColor: "white",
+        },
+        legend: {
+          labels: {
+            fontColor: "black",
+          },
+          align: "end",
+          position: "bottom",
         },
         tooltips: {
           mode: "index",
@@ -43,27 +54,24 @@ export default function RowBar() {
           mode: "nearest",
           intersect: true,
         },
-        legend: {
-          labels: {
-            fontColor: "rgba(17,17,17,.7)",
-            // fontColor: "black",
-          },
-          align: "end",
-          position: "bottom",
-        },
         scales: {
           xAxes: [
             {
+              ticks: {
+                fontColor: "rgba(17,17,17,.7)",
+              },
               display: true,
               scaleLabel: {
-                display: true,
-                labelString: "",
+                display: false,
+                labelString: "Month",
+                fontColor: "white",
               },
               gridLines: {
+                display: false,
                 borderDash: [2],
                 borderDashOffset: [2],
                 color: "rgba(33, 37, 41, 0.3)",
-                zeroLineColor: "rgba(33, 37, 41, 0.3)",
+                zeroLineColor: "rgba(0, 0, 0, 0)",
                 zeroLineBorderDash: [2],
                 zeroLineBorderDashOffset: [2],
               },
@@ -71,17 +79,21 @@ export default function RowBar() {
           ],
           yAxes: [
             {
+              ticks: {
+                fontColor: "rgba(17,17,17,.7)",
+              },
               display: true,
               scaleLabel: {
                 display: false,
                 labelString: "Value",
+                fontColor: "white",
               },
               gridLines: {
-                borderDash: [2],
+                borderDash: [3],
+                borderDashOffset: [3],
                 drawBorder: false,
-                borderDashOffset: [2],
-                color: "rgba(33, 37, 41, 0.2)",
-                zeroLineColor: "rgba(33, 37, 41, 0.15)",
+                color: "rgba(17, 17, 17, 0.15)",
+                zeroLineColor: "rgba(33, 37, 41, 0)",
                 zeroLineBorderDash: [2],
                 zeroLineBorderDashOffset: [2],
               },
@@ -90,17 +102,18 @@ export default function RowBar() {
         },
       },
     };
-    let ctx = document.getElementById("bar-chart").getContext("2d");
-    window.myBar = new Chart(ctx, config);
+    var ctx = document.getElementById("line-chart").getContext("2d");
+    window.myLine = new Chart(ctx, config);
   }, []);
+
   return (
     <Card>
-      <CardHeader color="blueGray" contentPosition="left">
-        <h2 className="text-white text-2xl">건강 상태 그래프</h2>
+      <CardHeader color="indigo" contentPosition="left">
+        <h2 className="text-white text-2xl">혈압 통계</h2>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">
-          <canvas id="bar-chart"></canvas>
+          <canvas id="line-chart"></canvas>
         </div>
       </CardBody>
     </Card>

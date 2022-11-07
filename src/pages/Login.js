@@ -1,10 +1,15 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Dashboard() {
+  const navigateToPurchase = () => {
+    window.location.href = "/dashboard";
+  };
+
   return (
-    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden -ml-60">
       <div className="w-full p-10 m-auto bg-white rounded-2xl shadow-md lg:max-w-xl">
-        <h1 className="text-3xl font-semibold text-center text-purple-700 underline">
+        <h1 className="text-3xl font-semibold text-center text-purple-700 ">
           로그인
         </h1>
         <form className="mt-6">
@@ -34,9 +39,11 @@ export default function Dashboard() {
           </div>
 
           <div className="mt-6">
-            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
-              Login
-            </button>
+            <Link to="/dashboard">
+              <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-purple-700 rounded-md hover:bg-purple-600 focus:outline-none focus:bg-purple-600">
+                Login
+              </button>
+            </Link>
           </div>
         </form>
       </div>
