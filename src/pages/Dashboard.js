@@ -4,7 +4,19 @@ import ChartBar from "components/ChartBar";
 import PageVisitsCard from "components/PageVisitsCard";
 import TrafficCard from "components/TrafficCard";
 
+import { call } from "../service/ApiService";
+import { useEffect, useState } from "react";
+
 export default function Dashboard() {
+  const [userinput, setUserinput] = useState();
+
+  // useEffect(() => {
+  //   call("/userinput/reference", "GET").then((response) => {
+  //     setUserinput(response.data);
+  //     console.log(response.data);
+  //   });
+  // }, []);
+
   return (
     <>
       <div className="bg-light-blue-500 px-3 md:px-8 h-40" />
@@ -51,7 +63,7 @@ export default function Dashboard() {
               //color="purple"
               color="gray"
               icon="monitor_heart"
-              title="수축기 혈압"
+              title="고혈압"
               amount="10 / 1740"
               // percentage="1.10"
               // percentageIcon="arrow_downward"
@@ -62,7 +74,7 @@ export default function Dashboard() {
               //color="blue"
               color="gray"
               icon="monitor_heart"
-              title="이완기 혈압"
+              title="저혈압"
               amount="12 / 1740"
               // percentage="12"
               // percentageIcon="arrow_upward"
@@ -73,7 +85,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="px-3 md:px-8 h-auto">
+      {/* <div className="px-3 md:px-8 h-auto">
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 xl:grid-cols-5">
             <div className="xl:col-start-1 xl:col-end-4 px-4 mb-14">
@@ -84,7 +96,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

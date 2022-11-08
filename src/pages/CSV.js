@@ -63,7 +63,7 @@ const CSV = function () {
   const headerKeys = Object.keys(Object.assign({}, ...array));
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div style={{ textAlign: "center" }} className="mb-[44rem]">
       <h1>CSV IMPORT </h1>
       <form>
         <input

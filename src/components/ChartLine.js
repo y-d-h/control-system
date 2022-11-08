@@ -114,9 +114,9 @@ export default function ChartLine() {
     <Card>
       <CardHeader color="indigo" contentPosition="left">
         <h6 className="uppercase text-gray-200 text-xs font-medium">
-          Overview
+          누적 통계
         </h6>
-        <h2 className="text-white text-2xl">Sales value</h2>
+        <h2 className="text-white text-2xl">전체 통계</h2>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">

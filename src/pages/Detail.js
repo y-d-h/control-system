@@ -14,8 +14,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     call("/userinput/detail", "POST", { phone: phone }).then((response) => {
-      console.log(response.data);
-      setData(response.data);
+      console.log([...response.data].reverse());
+      setData([...response.data].reverse());
     });
   }, []);
 

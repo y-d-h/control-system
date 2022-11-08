@@ -12,8 +12,8 @@ export default function ChartBar() {
         labels: [
           "고체온",
           "저체온",
-          "수축기혈압",
-          "이완기혈압",
+          "고혈압",
+          "저혈압",
           "산소포화도",
           "맥박수",
         ],
@@ -97,7 +97,7 @@ export default function ChartBar() {
     <Card>
       <CardHeader color="blueGray" contentPosition="left">
         <h6 className="uppercase text-gray-200 text-xs font-medium">
-          Overview
+          누적 통계
         </h6>
         <h2 className="text-white text-2xl">건강 상태 그래프</h2>
       </CardHeader>

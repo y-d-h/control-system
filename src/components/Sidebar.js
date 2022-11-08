@@ -43,7 +43,7 @@ export default function Sidebar() {
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
-                  <Icon name="settings" size="2xl" />
+                  <Icon name="upload" size="2xl" />
                   CSV
                 </NavLink>
               </li>
@@ -59,16 +59,16 @@ export default function Sidebar() {
                 </NavLink>
               </li>
 
-              {/* <li className="rounded-lg mb-2 text-gray-700">
+              <li className="rounded-lg mb-2 text-gray-700">
                 <NavLink
-                  to="/maps"
+                  to="/settings"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
-                  <Icon name="map" size="2xl" />
-                  Maps
+                  <Icon name="settings" size="2xl" />
+                  Settings
                 </NavLink>
-              </li> */}
+              </li>
 
               {/* <li className="rounded-lg mb-2 text-gray-700">
                 
