@@ -29,24 +29,23 @@ export function call(api, method, request) {
     .catch((error) => {
       console.log("Oops!");
       console.log(error.status);
-      console.log("Ooops!")
+      console.log("Ooops!");
       if (error.status === 403) {
-        window.location.href = "/signin";
+        window.location.href = "/login";
       }
       return Promise.reject(error);
     });
 }
 
 //로그인을 위한 API 서비스 메소드 signin
-export function signin(userDTO) {
-  return call("/auth/signin", "POST", userDTO)
-    .then((response) => {
-      if (response.token) {
-        localStorage.setItem("ACCESS_TOKEN", response.token);
-        localStorage.setItem("username", response.username);
-        window.location.href = "/";
-      }
-    });
+export function login(userDTO) {
+  return call("/auth/login", "POST", userDTO).then((response) => {
+    if (response.token) {
+      localStorage.setItem("ACCESS_TOKEN", response.token);
+      localStorage.setItem("username", response.username);
+      window.location.href = "/dashboard";
+    }
+  });
 }
 
 // 회원 가입 요청
@@ -67,10 +66,28 @@ export function signup(userDTO) {
       return Promise.reject(error);
     });
 }
+
 // 로그아웃
 export function signout() {
   // local 스토리지에 토큰 삭제
   localStorage.setItem("ACCESS_TOKEN", null);
   localStorage.setItem("username", null);
+
   window.location.href = "/";
+}
+
+// 이력 데이터 요청
+export function UserInput(setUserinput = { setUserinput }) {
+  return call("/userinput", "GET").then((response) => {
+    setUserinput(response.data);
+    //console.log(response.data);
+  });
+}
+
+// 대시보드 데이터 요청
+export function DashboardInput(setDashboardInput = { setDashboardInput }) {
+  return call("/userinput/reference", "GET").then((response) => {
+    setDashboardInput(response);
+    //console.log(response);
+  });
 }

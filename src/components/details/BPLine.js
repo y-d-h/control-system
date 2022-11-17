@@ -1,47 +1,45 @@
 import { useEffect } from "react";
-import Chart from "chart.js";
+import { useParams } from "react-router-dom";
+
+import { call } from "../../service/ApiService";
+
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
-import { useParams } from "react-router-dom";
-import { call } from "../../service/ApiService";
 
-export default function Line({ data }) {
-  //console.log(data);
+import Chart from "chart.js";
+
+export default function BPLine() {
   const { phone } = useParams();
 
   useEffect(() => {
     call("/userinput/detail", "POST", { phone: phone }).then((response) => {
       console.log(response.data);
 
-      var config = {
+      let config = {
         type: "line",
         data: {
           labels:
             response.data.length < 7
               ? [
-                  //props.data[0].time.substr(6, 7),
-                  // data[1].time.substr(6, 7),
                   "",
-                  response.data[0] ? response.data[0].time.substr(6, 7) : "",
-                  response.data[1] ? response.data[1].time.substr(6, 7) : "",
-                  response.data[2] ? response.data[2].time.substr(6, 7) : "",
-                  response.data[3] ? response.data[3].time.substr(6, 7) : "",
-                  response.data[4] ? response.data[4].time.substr(6, 7) : "",
-                  response.data[5] ? response.data[5].time.substr(6, 7) : "",
-                  response.data[6] ? response.data[6].time.substr(6, 7) : "",
+                  response.data[0] ? response.data[0].time.substr(5, 6) : "",
+                  response.data[1] ? response.data[1].time.substr(5, 6) : "",
+                  response.data[2] ? response.data[2].time.substr(5, 6) : "",
+                  response.data[3] ? response.data[3].time.substr(5, 6) : "",
+                  response.data[4] ? response.data[4].time.substr(5, 6) : "",
+                  response.data[5] ? response.data[5].time.substr(5, 6) : "",
+                  response.data[6] ? response.data[6].time.substr(5, 6) : "",
                 ]
               : [
-                  //props.data[0].time.substr(6, 7),
-                  // data[1].time.substr(6, 7),
                   "",
-                  response.data[response.data.length - 7].time.substr(6, 7),
-                  response.data[response.data.length - 6].time.substr(6, 7),
-                  response.data[response.data.length - 5].time.substr(6, 7),
-                  response.data[response.data.length - 4].time.substr(6, 7),
-                  response.data[response.data.length - 3].time.substr(6, 7),
-                  response.data[response.data.length - 2].time.substr(6, 7),
-                  response.data[response.data.length - 1].time.substr(6, 7),
+                  response.data[response.data.length - 7].time.substr(5, 6),
+                  response.data[response.data.length - 6].time.substr(5, 6),
+                  response.data[response.data.length - 5].time.substr(5, 6),
+                  response.data[response.data.length - 4].time.substr(5, 6),
+                  response.data[response.data.length - 3].time.substr(5, 6),
+                  response.data[response.data.length - 2].time.substr(5, 6),
+                  response.data[response.data.length - 1].time.substr(5, 6),
                 ],
           datasets: [
             {
@@ -51,8 +49,6 @@ export default function Line({ data }) {
               data:
                 response.data.length < 7
                   ? [
-                      //props.data[0].pulse,
-                      //props.data[1].pulse,
                       response.data[0] ? response.data[0].sbp : null,
                       response.data[0] ? response.data[0].sbp : null,
                       response.data[1] ? response.data[1].sbp : null,
@@ -63,8 +59,6 @@ export default function Line({ data }) {
                       response.data[6] ? response.data[6].sbp : null,
                     ]
                   : [
-                      //props.data[0].pulse,
-                      //props.data[1].pulse,
                       response.data[response.data.length - 7].sbp,
                       response.data[response.data.length - 7].sbp,
                       response.data[response.data.length - 6].sbp,
@@ -85,8 +79,6 @@ export default function Line({ data }) {
               data:
                 response.data.length < 7
                   ? [
-                      //props.data[0].pulse,
-                      //props.data[1].pulse,
                       response.data[0] ? response.data[0].dbp : null,
                       response.data[0] ? response.data[0].dbp : null,
                       response.data[1] ? response.data[1].dbp : null,
@@ -97,8 +89,6 @@ export default function Line({ data }) {
                       response.data[6] ? response.data[6].dbp : null,
                     ]
                   : [
-                      //props.data[0].pulse,
-                      //props.data[1].pulse,
                       response.data[response.data.length - 7].dbp,
                       response.data[response.data.length - 7].dbp,
                       response.data[response.data.length - 6].dbp,
@@ -184,7 +174,7 @@ export default function Line({ data }) {
           },
         },
       };
-      var ctx = document.getElementById("line-chart").getContext("2d");
+      let ctx = document.getElementById("line-chart").getContext("2d");
       window.myLine = new Chart(ctx, config);
     });
   }, []);

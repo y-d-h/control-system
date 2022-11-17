@@ -44,7 +44,7 @@ export default function Sidebar() {
                   activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
                 >
                   <Icon name="upload" size="2xl" />
-                  CSV
+                  데이터 업로드
                 </NavLink>
               </li>
 
@@ -59,7 +59,7 @@ export default function Sidebar() {
                 </NavLink>
               </li>
 
-              <li className="rounded-lg mb-2 text-gray-700">
+              {/* <li className="rounded-lg mb-2 text-gray-700">
                 <NavLink
                   to="/settings"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
@@ -68,22 +68,9 @@ export default function Sidebar() {
                   <Icon name="settings" size="2xl" />
                   Settings
                 </NavLink>
-              </li>
-
-              {/* <li className="rounded-lg mb-2 text-gray-700">
-                
-                <NavLink
-                  to="/login"
-                  className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
-                  activeClassName="bg-gradient-to-tr from-light-blue-500 to-light-blue-700 text-white shadow-md"
-                >
-                  <Icon name="fingerprint" size="2xl" />
-                  로그인
-                </NavLink>
-
               </li> */}
 
-              {/* <li className="rounded-lg mb-2 ">
+              {/* <li className="rounded-lg mb-2">
                 <NavLink
                   to="/test"
                   className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"

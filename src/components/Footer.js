@@ -1,56 +1,32 @@
-export default function footer() {
+import { call } from "../service/ApiService";
+import { useEffect, useState } from "react";
+
+export default function Footer() {
+  const [today, setToday] = useState(0);
+
+  useEffect(() => {
+    call("/userinput/reference", "GET").then((response) => {
+      console.log(response);
+      setToday(response.today);
+    });
+  });
+
   return (
     <footer className="py-6 px-16 border-t border-gray-200 font-light flex flex-col lg:flex-row justify-between items-center">
-      <p className="text-gray-700 mb-6 lg:mb-0">
+      {/* <p className="text-gray-700 mb-6 lg:mb-0">
         Copyright &copy; {new Date().getFullYear()}
         {" 2Team"}
-        {/* <a
-          href="https://www.creative-tim.com?ref=mtdk"
-          target="_blank"
-          rel="noreferrer"
-          className="text-light-blue-500 hover:text-light-blue-700"
-        >
-          Creative Tim
-        </a> */}
-      </p>
+      </p> */}
+      <p>today : {today}</p>
+      <div />
 
       <ul className="list-unstyled flex">
-        {/* <li className="mr-6">
-          <a
-            className="text-gray-700 hover:text-gray-900 font-medium block text-sm"
-            target="_blank"
-            rel="noreferrer"
-            href="https://www.creative-tim.com/presentation?ref=mtdk"
-          >
-            About Us
-          </a>
-        </li>
-        <li className="mr-6">
-          <a
-            className="text-gray-700 hover:text-gray-900 font-medium block text-sm"
-            target="_blank"
-            rel="noreferrer"
-            href="https://www.creative-tim.com/blog/?ref=mtdk"
-          >
-            Blog
-          </a>
-        </li>
-        <li className="mr-6">
-          <a
-            className="text-gray-700 hover:text-gray-900 font-medium block text-sm"
-            target="_blank"
-            rel="noreferrer"
-            href="https://github.com/creativetimofficial/material-tailwind-dashboard-react/blob/main/LICENSE?ref=mtdk"
-          >
-            MIT License
-          </a>
-        </li> */}
         <li>
           <a
-            className="text-gray-700 hover:text-gray-900 font-medium block text-sm"
+            className="text-gray-700 hover:text-gray-900 font-medium block text-sm no-underline"
             target="_blank"
             rel="noreferrer"
-            // href="https://creative-tim.com/contact-us?ref=mtdk"
+            href="http://kocw-n.xcache.kinxcdn.com/data/document/2021/kcu/kimogson0914/5.pdf"
           >
             Reference
           </a>

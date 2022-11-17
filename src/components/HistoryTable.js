@@ -2,57 +2,123 @@ import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
-import DateRange from "./DateRangePicker";
+//import { Select, Option } from "@material-tailwind/react";
+
+// import DateRange from "./DateRangePicker";
 //import CalendarsDateRangePicker from "./DateRangePicker";
-import { call } from "../service/ApiService";
+
+import { call, UserInput } from "../service/ApiService";
 import { useEffect, useState } from "react";
 
+import Icon from "@material-tailwind/react/Icon";
+import SearchBar from "./SearchBar";
+
 export default function HistoryTable() {
+  // call("/userinput/search", "POST", userDTO).then((response) => {
+  //   if (response.token) {
+  //     setUserinput(response);
+  //     // window.location.href = "/dashboard";
+  //   }
+  // });
+
   const [userinput, setUserinput] = useState();
 
+  const [name, setName] = useState("");
+  const [sex, setSex] = useState(0);
+  const [age, setAge] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState(0);
+  const [pulse, setPulse] = useState(0);
+  const [sbp, setSbp] = useState(0);
+  const [dbp, setDbp] = useState(0);
+  const [temperature, setTemperature] = useState(0);
+  const [phone, setPhone] = useState("");
+  const [time, setTime] = useState("");
+
+  function arrayui(start, end, step) {
+    var array1 = [];
+    for (var i = start; i < end; i += step) {
+      array1.push(<option>{i}</option>);
+    }
+    return array1;
+  }
+
+  // function searchdata(){
+  //   call('dsjkl', post'', { age: age}).response({
+  //     userint
+  //   })
+  // }
+
   useEffect(() => {
-    call("/userinput", "GET").then((response) => {
-      setUserinput(response.data);
-      console.log(response.data);
-    });
+    searchButtonClick();
+    // UserInput(setUserinput);
+    // call("/userinput", "GET").then((response) => {
+    //   setUserinput(response.data);
+    //   //console.log(response.data);
+    // });
+    // call("/userinput/search", "POST", {
+    //   name: name,
+    //   sex: sex,
+    //   age: age,
+    //   height: height,
+    //   weight: weight,
+    //   pulse: pulse,
+    //   sbp: sbp,
+    //   dbp: dbp,
+    //   temperature: temperature,
+    //   phone: phone,
+    //   time: time,
+    // }).then((response) => {
+    //   console.log(response.data);
+    //   setUserinput(response.data);
+    //   // window.location.href = "/dashboard";
+    // });
   }, []);
 
-  // const inputdata = [
-  //   {
-  //     name: "name01",
-  //     sex: "sex01",
-  //     age: "age01",
-  //     height: "height01",
-  //     weight: "weight01",
-  //     pulse: "pulse01",
-  //     sbp: "SBP01",
-  //     dbp: "DBP01",
-  //     temperature: "temperature01",
-  //   },
-  //   {
-  //     name: "name02",
-  //     sex: "sex02",
-  //     age: "age02",
-  //     height: "height02",
-  //     weight: "weight02",
-  //     pulse: "pulse02",
-  //     sbp: "SBP02",
-  //     dbp: "DBP02",
-  //     temperature: "temperature02",
-  //   },
-  // ];
-
+  function searchButtonClick() {
+    console.log(890);
+    call("/userinput/search", "POST", {
+      name: name,
+      sex: sex,
+      age: age,
+      height: height,
+      weight: weight,
+      pulse: pulse,
+      sbp: sbp,
+      dbp: dbp,
+      temperature: temperature,
+      phone: phone,
+      time: time,
+    }).then((response) => {
+      console.log(response.data);
+      setUserinput(response.data);
+      // window.location.href = "/dashboard";
+    });
+  }
   return (
     <Card>
       <CardHeader color="blueGray" contentPosition="left">
-        <div className="grid grid-cols-6 col-gap-8">
-          <h2 className=" text-white text-2xl ">사용자 이력</h2>
+        <div className="grid grid-cols-6 grid-flow-row">
+          <h2 className=" text-white text-2xl">사용자 이력</h2>
+          <div />
+          <div />
+          <div />
+          {/* <SearchBar /> */}
+
           {/* <DateRange className="col-2 w-xl" /> */}
-          <NavbarInput className="col-3 w-full" placeholder="Search" />
+
+          {/* <NavbarInput
+            className=""
+            placeholder="Search"
+            style={{ width: "300px" }}
+          /> */}
         </div>
       </CardHeader>
+
       <CardBody>
         <div className="overflow-x-auto">
+          <div className="searchcontent"></div>
+
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
               <tr>
@@ -87,13 +153,132 @@ export default function HistoryTable() {
                   전화번호
                 </th>
                 <th className="px-2 text-purple-500 align-middle border-b border-solid border-gray-200 py-3 text-sm whitespace-nowrap font-light text-center">
-                  입력일자
+                  측정일자
                 </th>
               </tr>
             </thead>
-            {userinput &&
-              userinput.map((user, idx) => (
-                <tbody>
+            <tbody>
+              <tr>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <input
+                    className="w-20 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 px-2"
+                    onChange={(e) => {
+                      setName(e.currentTarget.value);
+                    }}
+                  />
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setSex(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    <option value={1}>남</option>
+                    <option value={2}>여</option>
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setAge(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    {arrayui(0, 100, 10)}
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setHeight(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    {arrayui(0, 200, 10)}
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setWeight(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    {arrayui(0, 200, 10)}
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setPulse(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    {arrayui(0, 200, 10)}
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setSbp(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    {arrayui(0, 200, 10)}
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setDbp(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    {arrayui(0, 200, 10)}
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <select
+                    onChange={(e) => {
+                      setTemperature(e.currentTarget.value);
+                    }}
+                  >
+                    <option value={0}>--</option>
+                    {arrayui(34, 40, 1)}
+                  </select>
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <input
+                    type="tel"
+                    className="w-28 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 px-2"
+                    onChange={(e) => {
+                      setPhone(e.currentTarget.value);
+                    }}
+                  />
+                </th>
+                <th className="border-b border-gray-200 align-middle whitespace-nowrap px-2 py-4 text-center">
+                  <input
+                    className="border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 px-2"
+                    type="date"
+                    onChange={(e) => {
+                      setTime(e.currentTarget.value);
+                    }}
+                  />
+                </th>
+                <th>
+                  <button
+                    className="border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 px-2 py-1 shadow-md pt-2"
+                    onClick={() => {
+                      searchButtonClick();
+                    }}
+                  >
+                    <Icon name="search" size="2xl" />
+                  </button>
+                </th>
+              </tr>
+              {userinput &&
+                userinput.map((user, idx) => (
                   <tr
                     key={idx}
                     onClick={() => {
@@ -104,10 +289,9 @@ export default function HistoryTable() {
                   >
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-center">
                       {user.name}
-                      {/* {userinput.name} */}
                     </th>
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-center">
-                      {user.sex}
+                      {user.sex === 1 ? "남" : "여"}
                     </th>
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-center">
                       {user.age}
@@ -131,14 +315,18 @@ export default function HistoryTable() {
                       {user.temperature}
                     </th>
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-center">
-                      {user.phone}
+                      {user.phone &&
+                        user.phone
+                          .replace(/[^0-9]/g, "")
+                          .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3")
+                          .replace(/(\-{1,2})$/g, "")}
                     </th>
                     <th className="border-b border-gray-200 align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-center">
                       {user.time}
                     </th>
                   </tr>
-                </tbody>
-              ))}
+                ))}
+            </tbody>
           </table>
         </div>
       </CardBody>

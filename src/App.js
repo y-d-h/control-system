@@ -4,6 +4,7 @@ import Dashboard from "pages/Dashboard";
 import CSV from "pages/CSV";
 import Tables from "pages/Tables";
 import Settings from "pages/Settings";
+import Test from "pages/Test";
 import Login from "pages/Login";
 import Detail from "pages/Detail";
 import Footer from "components/Footer";
@@ -25,9 +26,9 @@ function App() {
           <Route exact path="/CSV" component={CSV} />
           <Route exact path="/tables" component={Tables} />
           <Route exact path="/settings" component={Settings} />
+          <Route exact path="/test" component={Test} />
           <Route exact path="/detail/:phone" component={Detail} />
           <Redirect from="*" to="/login" />
-          {/* <Redirect from="/" to="/login" /> */}
         </Switch>
         <Footer />
       </div>

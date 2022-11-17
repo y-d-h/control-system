@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { call } from "../service/ApiService";
 
+import Icon from "@material-tailwind/react/Icon";
+
 const CSV = function () {
   const [file, setFile] = useState();
   const [array, setArray] = useState([]);
@@ -63,8 +65,8 @@ const CSV = function () {
   const headerKeys = Object.keys(Object.assign({}, ...array));
 
   return (
-    <div style={{ textAlign: "center" }} className="mb-[44rem]">
-      <h1>CSV IMPORT </h1>
+    <div style={{ textAlign: "center" }} className="mb-[30rem]">
+      <h1 className="my-20">생체측정정보 데이터 업로드</h1>
       <form>
         <input
           type={"file"}
@@ -77,8 +79,10 @@ const CSV = function () {
           onClick={(e) => {
             handleOnSubmit(e);
           }}
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
         >
-          IMPORT CSV
+          <Icon name="upload" size="2xl" />
+          <span>업로드</span>
         </button>
       </form>
 

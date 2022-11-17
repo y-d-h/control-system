@@ -1,45 +1,8 @@
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
-import NavbarInput from "@material-tailwind/react/NavbarInput";
-import { call } from "../../service/ApiService";
-import { useEffect, useState } from "react";
 
 export default function PersonalHistory({ data }) {
-  // const [userinput, setUserInput] = useState();
-
-  // useEffect(() => {
-  //   call("/userinput/detail", "GET").then((response) => {
-  //     setUserInput(response.data);
-  //     console.log(response.data);
-  //   });
-  // }, []);
-
-  // const inputdata = [
-  //   {
-  //     name: "name01",
-  //     sex: "sex01",
-  //     age: "age01",
-  //     height: "height01",
-  //     weight: "weight01",
-  //     pulse: "pulse01",
-  //     sbp: "SBP01",
-  //     dbp: "DBP01",
-  //     temperature: "temperature01",
-  //   },
-  //   {
-  //     name: "name02",
-  //     sex: "sex02",
-  //     age: "age02",
-  //     height: "height02",
-  //     weight: "weight02",
-  //     pulse: "pulse02",
-  //     sbp: "SBP02",
-  //     dbp: "DBP02",
-  //     temperature: "temperature02",
-  //   },
-  // ];
-
   return (
     <Card>
       <CardHeader color="blueGray" contentPosition="left">

@@ -1,11 +1,10 @@
-import StatusCard from "components/StatusCard";
-import HistoryTable from "components/HistoryTable";
-import Line from "components/details/Line";
-import PulseLine from "components/details/PulseLine";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import { call } from "../service/ApiService";
-import { useState } from "react";
-import { useEffect } from "react";
+
+import BPLine from "components/details/BPLine";
+import PulseLine from "components/details/PulseLine";
 import PersonalHistory from "components/details/PersonalHistory";
 
 export default function Dashboard() {
@@ -31,10 +30,10 @@ export default function Dashboard() {
         <div className="container mx-auto max-w-full">
           <div className="grid grid-cols-1 xl:grid-cols-5">
             <div className="xl:col-start-1 xl:col-end-4 px-4 mb-14">
-              <Line data={data} />
+              <BPLine />
             </div>
             <div className="xl:col-start-4 xl:col-end-6 px-4 mb-14">
-              <PulseLine key={phone} data={data} />
+              <PulseLine />
             </div>
           </div>
         </div>

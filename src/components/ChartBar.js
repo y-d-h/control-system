@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
 import Chart from "chart.js";
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
+
+import { DashboardInput } from "../service/ApiService";
 
 export default function ChartBar() {
   useEffect(() => {
@@ -22,7 +25,21 @@ export default function ChartBar() {
             label: new Date().getFullYear(),
             backgroundColor: "#03a9f4",
             borderColor: "#03a9f4",
-            data: [20, 78, 56, 34, 100, 45, 0],
+            data: [
+              // props.countHighTemperature,
+              // props.countHypothermia,
+              // props.countHighBloodPressure,
+              // props.countHypotension,
+              // props.countBradycardia,
+              // props.countTachycardia,
+              // dashboardinput.countHighTemperature,
+              // dashboardinput.countHypothermia,
+              // dashboardinput.countHighBloodPressure,
+              // dashboardinput.countHypotension,
+              // dashboardinput.countBradycardia,
+              // dashboardinput.countTachycardia,
+              0,
+            ],
             fill: false,
             barThickness: 28,
           },
@@ -45,8 +62,7 @@ export default function ChartBar() {
         },
         legend: {
           labels: {
-            fontColor: "rgba(17,17,17,.7)",
-            // fontColor: "black",
+            fontColor: "black",
           },
           align: "end",
           position: "bottom",
@@ -99,7 +115,7 @@ export default function ChartBar() {
         <h6 className="uppercase text-gray-200 text-xs font-medium">
           누적 통계
         </h6>
-        <h2 className="text-white text-2xl">건강 상태 그래프</h2>
+        <h2 className="text-white text-2xl">항목별 이상자 통계</h2>
       </CardHeader>
       <CardBody>
         <div className="relative h-96">

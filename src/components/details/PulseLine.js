@@ -1,16 +1,15 @@
 import { useEffect } from "react";
-import Chart from "chart.js";
+import { useParams } from "react-router-dom";
+
+import { call } from "../../service/ApiService";
+
 import Card from "@material-tailwind/react/Card";
 import CardHeader from "@material-tailwind/react/CardHeader";
 import CardBody from "@material-tailwind/react/CardBody";
-import { useState, useRef } from "react";
-import { isIdentifierPart } from "typescript";
-import { useParams } from "react-router-dom";
-import { call } from "../../service/ApiService";
-import { LineAxisOutlined } from "@mui/icons-material";
 
-export default function PulseLine(props) {
-  //console.log("props : ", props);
+import Chart from "chart.js";
+
+export default function PulseLine() {
   const { phone } = useParams();
 
   useEffect(() => {
@@ -22,30 +21,25 @@ export default function PulseLine(props) {
           labels:
             response.data.length < 7
               ? [
-                  //props.data[0].time.substr(6, 7),
-                  // data[1].time.substr(6, 7),
                   "",
-                  response.data[0] ? response.data[0].time.substr(6, 7) : "",
-                  response.data[1] ? response.data[1].time.substr(6, 7) : "",
-                  response.data[2] ? response.data[2].time.substr(6, 7) : "",
-                  response.data[3] ? response.data[3].time.substr(6, 7) : "",
-                  response.data[4] ? response.data[4].time.substr(6, 7) : "",
-                  response.data[5] ? response.data[5].time.substr(6, 7) : "",
-                  response.data[6] ? response.data[6].time.substr(6, 7) : "",
+                  response.data[0] ? response.data[0].time.substr(5, 6) : "",
+                  response.data[1] ? response.data[1].time.substr(5, 6) : "",
+                  response.data[2] ? response.data[2].time.substr(5, 6) : "",
+                  response.data[3] ? response.data[3].time.substr(5, 6) : "",
+                  response.data[4] ? response.data[4].time.substr(5, 6) : "",
+                  response.data[5] ? response.data[5].time.substr(5, 6) : "",
+                  response.data[6] ? response.data[6].time.substr(5, 6) : "",
                 ]
               : [
-                  //props.data[0].time.substr(6, 7),
-                  // data[1].time.substr(6, 7),
                   "",
-                  response.data[response.data.length - 7].time.substr(6, 7),
-                  response.data[response.data.length - 6].time.substr(6, 7),
-                  response.data[response.data.length - 5].time.substr(6, 7),
-                  response.data[response.data.length - 4].time.substr(6, 7),
-                  response.data[response.data.length - 3].time.substr(6, 7),
-                  response.data[response.data.length - 2].time.substr(6, 7),
-                  response.data[response.data.length - 1].time.substr(6, 7),
+                  response.data[response.data.length - 7].time.substr(5, 6),
+                  response.data[response.data.length - 6].time.substr(5, 6),
+                  response.data[response.data.length - 5].time.substr(5, 6),
+                  response.data[response.data.length - 4].time.substr(5, 6),
+                  response.data[response.data.length - 3].time.substr(5, 6),
+                  response.data[response.data.length - 2].time.substr(5, 6),
+                  response.data[response.data.length - 1].time.substr(5, 6),
                 ],
-          //labels: xArray,
           datasets: [
             {
               label: "맥박",
@@ -54,8 +48,6 @@ export default function PulseLine(props) {
               data:
                 response.data.length < 7
                   ? [
-                      //props.data[0].pulse,
-                      //props.data[1].pulse,
                       response.data[0] ? response.data[0].pulse : null,
                       response.data[0] ? response.data[0].pulse : null,
                       response.data[1] ? response.data[1].pulse : null,
@@ -66,8 +58,6 @@ export default function PulseLine(props) {
                       response.data[6] ? response.data[6].pulse : null,
                     ]
                   : [
-                      //props.data[0].pulse,
-                      //props.data[1].pulse,
                       response.data[response.data.length - 7].pulse,
                       response.data[response.data.length - 7].pulse,
                       response.data[response.data.length - 6].pulse,
@@ -77,7 +67,6 @@ export default function PulseLine(props) {
                       response.data[response.data.length - 2].pulse,
                       response.data[response.data.length - 1].pulse,
                     ],
-              //data: xArray,
               fill: false,
               lineTension: 0,
             },
@@ -156,7 +145,7 @@ export default function PulseLine(props) {
         },
       };
 
-      var ctx = document.getElementById("pulse-line").getContext("2d");
+      let ctx = document.getElementById("pulse-line").getContext("2d");
       window.myLine = new Chart(ctx, config);
     });
   }, []);
